@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p><a href="{{url_for('loginUser') }}">Login</a></p>
+    <p><a href="{{url_for('registrationUser') }}">Registration</a></p>
+    <p><a href="{{url_for('jinjatest')}}">jinja</a></p>
+    {% if message %}
+        <div class="alert alert-warning alert-dismissible" role="alert" style="color:red" >
+            {{message}}. {{username}} can be log in.
+        </div>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+{% from "_formhelpers.html" import render_field %}
+  <form method="post">
+      {{render_field(form.username)}}
+      {{render_field(form.userpassword)}}
+      <p><input type="submit" value="Submit"></p>
+        <div class="container-fluid" style="min-height:100%;color:red">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-warning alert-dismissible" role="alert" >
+                {{message}}
+              </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
+  </form>
+</body>
+</html>

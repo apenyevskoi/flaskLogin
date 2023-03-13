@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+</head>
+<body>
+    <div>
+        <p>User data</p>
+        {% for label, value in uData.items() %}
+            <p>{{label}}: <dd>{{value}}</dd></p>
+        {% endfor %}
+    </div>
+    <div>
+
+    </div>
+</body>
+</html>
