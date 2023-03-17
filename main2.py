@@ -1,7 +1,6 @@
 import uuid
 import random
 import hashlib
-
 import psycopg2
 import sqlalchemy.exc
 from datetime import datetime
@@ -15,7 +14,7 @@ from flask import Flask, render_template, request, url_for, redirect, flash, ses
 
 app = Flask('__name__', template_folder='C:/Users/INSAGNIFICANT/PycharmProjects/flaskLogin/templates')
 app.config['SECRET_KEY'] = token_hex(16)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:pass@localhost:5433/userDB'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:simple_0@localhost:5433/userDB'
 app.config['EXPLAIN_TEMPLATE_LOADING'] = False
 
 #FLASK_SCRIPT
@@ -60,7 +59,7 @@ def registrationUser():
     if request.method == 'POST' and form.validate():
         userData = UserPost(
             userid=random.randint( 100000, 999999 ),
-            username = form.username.data,
+            username = form.username.data.lower(),
             userpassword= hashlib.sha512(bytes(form.userpassword.data, 'utf-8')).hexdigest(),
             useremail = form.useremail.data,
             userdateofbirth = form.userdateofbirth.data
@@ -88,7 +87,7 @@ def loginUser():
     form = LoginIn(request.form)
     if request.method == 'POST':
         userData = UserPost(
-            username = form.username.data,
+            username = form.username.data.lower(),
             userpassword = hashlib.sha512(bytes(form.userpassword.data, 'utf-8')).hexdigest()
         )
         try:
