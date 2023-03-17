@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ pagename }}</title>
+</head>
+<body>
+    {% if pagename == "Change password" %}
+        change password form
+        <form method="post" style="color:red" position="center">
+            <p><input name="password"></p>
+            <p><input name="passwordRe"></p>
+            <p><input type="submit" name="Change"></p>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+        </form>
+    {% endif %}
+    {% if pagename == "do SQL query"%}
+        <form action="" method="post">
+            <p>select username, useremail from users</p>
+            <p>select * from users where username == 'user1'</p>
+            <p>{{form.sqlquery(cols="80",rows="10")}}</p>
+            <p><input type="submit" name="Send query"></p>
+            {% if records %}
+                <table>
+                {% for record in records %}
+                    {% if record[0] % 2 == 0 %}
+                        <tr BGCOLOR="#FFFFCC">
+                            {% for field in record %}
+                                <td> {{field}} </td>
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
+                    {% if record[0] % 2 != 0 %}
+                        <tr>
+                            {% for field in record %}
+                                <td> {{field}} </td>
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </table>
+            {% endif %}
+        </form>
+        {% if message %}
+            {{message}}
+        {% endif %}
+    {% endif %}
+</body>
+</html>

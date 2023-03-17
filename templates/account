@@ -14,5 +14,8 @@
     <div>
 
     </div>
+    <div>
+        <p><a href="{{url_for("choicefunc", func='setPassword')}}">change password</a></p>
+    </div>
 </body>
 </html>
